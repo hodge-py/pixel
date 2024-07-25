@@ -20,12 +20,12 @@
 
         <v-row justify="center" align-items="center" class="ga-8" >
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="min-height: 80vh;background-color: #555555;">
-                <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw;">PixelArk</h1>
+                <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PixelArk</h1>
                 <input id="color1" style="display: flex;" class="w-100" type="color" value="#ffffff" />
-                <label for="color1"><i>Background Color</i></label>
+                <label class="pb-2" for="color1"><i>Background Color</i></label>
 
                 <input id="color2" style="display: flex;" class="w-100" type="color" />
-                <label for="color2"><i>Main Color</i></label>
+                <label class="pb-2" for="color2"><i>Main Color</i></label>
 
                     <v-text-field id="width-val" v-model="textFieldValue" label="Width"></v-text-field>
 
@@ -40,9 +40,15 @@
                     Export
                 </v-btn>
 
+                <v-switch id="switcher" v-on:click="eraseText" color="primary" class="d-flex mb-3" label="Erase" variant="tonal">
+                    Erase
+                </v-switch>
+
                 <v-btn v-on:click="clearText" class="d-flex" variant="tonal">
                     Clear
                 </v-btn>
+
+
 
             </v-col>
 
@@ -98,19 +104,29 @@
             return {
                 textFieldValue: 24,
                 textFieldValue2: 24,
-                lightOn: true
+                lightOn: true,
+                erase: false
             }
         },
         methods: {
             clearText() {
                 $(".gridKid").css("background-color","transparent");
+            },
+            eraseText(){
+                this.erase = !this.erase
+                if(this.erase){
+                    color = "transparent"
+                }
+                else{
+                    color = $("#color2").val();
+                }
             }
         }
     })
 
     app.use(vuetify).mount('#app')
 
-
+        tmp = "#000000"
         background = "#ffffff"
         color = "#000000"
         rows = 24
