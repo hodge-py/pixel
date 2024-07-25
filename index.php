@@ -29,9 +29,9 @@
                 <input id="color2" style="display: flex;" type="color" />
                 <label for="color2"><i>Main Color</i></label>
 
-                    <v-text-field placeholder="24" label="Width"></v-text-field>
+                    <v-text-field label="Width"></v-text-field>
 
-                    <v-text-field placeholder="24" label="Height"></v-text-field>
+                    <v-text-field label="Height"></v-text-field>
 
                 <v-btn class="d-flex" variant="tonal">
                     Export
@@ -40,10 +40,13 @@
             </v-col>
 
             <v-col class="border-md rounded" cols="9" style="background-color: #555555;">
-                <canvas id="paintCanvas" width="1000px" height="1000px" class="border-sm" style="height: 85vh; width: 100%;background-color: white;">
+                <div id="gridLeader" style="height: 90vh; display: grid;background-color: white;grid-template-columns: repeat(24, 1fr);">
 
 
-                </canvas>
+
+
+
+                </div>
             </v-col>
 
 
@@ -91,34 +94,15 @@
 
     $(document).ready(function(){
 
-        const canvas = document.getElementById("paintCanvas");
-        var width = canvas.width;
-        var height = canvas.height;
-        const ctx = canvas.getContext("2d");
-
-        console.log(width)
-        count = 0
-        hold = width/24
-        while(count < (width-hold)){
-            count += hold
-            ctx.beginPath();
-            ctx.moveTo(count, 0);
-            ctx.lineTo(count, 1000);
-            ctx.stroke();
-        }
-        count = 0
-        hold = height/24
-        while(count < (height-hold)){
-            count += hold
-            ctx.beginPath();
-            ctx.moveTo(0, count);
-            ctx.lineTo(1000, count);
-            ctx.stroke();
+        for(i = 0; i <= 23; i++){
+            for(j = 0; j <= 23; j++) {
+                $("#gridLeader").append(`<div class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+            }
         }
 
-
-        $("#paintCanvas").on("click",function (){
-            
+        $(".gridKid").on("click",function (e){
+            console.log("efe")
+            $(this).css("background-color", "black");
         })
 
     });
