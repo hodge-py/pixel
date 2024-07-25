@@ -149,7 +149,13 @@
         })
 
         $("#color2").on("change", function (){
-            color = $("#color2").val();
+            if (color == "transparent"){
+
+            }
+            else{
+                color = $("#color2").val();
+            }
+
         })
 
         $("#width-val").on("focusout", function (){
