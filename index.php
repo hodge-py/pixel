@@ -21,10 +21,10 @@
         <v-row justify="center" align-items="center" class="ga-8" >
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="min-height: 80vh;background-color: #555555;">
                 <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw;">PixelArk</h1>
-                <input id="color1" style="display: flex;" type="color" value="#ffffff" />
+                <input id="color1" style="display: flex;" class="w-100" type="color" value="#ffffff" />
                 <label for="color1"><i>Background Color</i></label>
 
-                <input id="color2" style="display: flex;" type="color" />
+                <input id="color2" style="display: flex;" class="w-100" type="color" />
                 <label for="color2"><i>Main Color</i></label>
 
                     <v-text-field id="width-val" v-model="textFieldValue" label="Width"></v-text-field>
@@ -36,8 +36,12 @@
                     <div v-else>Grid On</div>
                 </v-btn>
 
-                <v-btn class="d-flex" variant="tonal">
+                <v-btn class="d-flex mb-3" variant="tonal">
                     Export
+                </v-btn>
+
+                <v-btn v-on:click="clearText" class="d-flex" variant="tonal">
+                    Clear
                 </v-btn>
 
             </v-col>
@@ -96,13 +100,18 @@
                 textFieldValue2: 24,
                 lightOn: true
             }
+        },
+        methods: {
+            clearText() {
+                $(".gridKid").css("background-color","transparent");
+            }
         }
     })
 
     app.use(vuetify).mount('#app')
 
 
-
+        background = "#ffffff"
         color = "#000000"
         rows = 24
         columns = 23
@@ -115,12 +124,12 @@
         }
 
         $(document).on("click", ".gridKid", function (e){
-            console.log("efe")
             $(this).css("background-color", color);
         })
 
         $("#color1").on("change", function (){
-            $("#gridLeader").css("background-color",$("#color1").val());
+            background = $("#color1").val();
+            $("#gridLeader").css("background-color",background);
         })
 
         $("#color2").on("change", function (){
