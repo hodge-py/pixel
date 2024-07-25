@@ -6,11 +6,9 @@
     <title>hodgek-py Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
-    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.6.13/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
 
 </head>
 <body>
@@ -22,16 +20,21 @@
 
         <v-row justify="center" align-items="center" class="ga-8" >
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="min-height: 80vh;background-color: #555555;">
-                <h1>PixelArk</h1>
-                <input id="color1" style="display: flex;" type="color" />
+                <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw;">PixelArk</h1>
+                <input id="color1" style="display: flex;" type="color" value="#ffffff" />
                 <label for="color1"><i>Background Color</i></label>
 
                 <input id="color2" style="display: flex;" type="color" />
                 <label for="color2"><i>Main Color</i></label>
 
-                    <v-text-field label="Width"></v-text-field>
+                    <v-text-field id="width-val" v-model="textFieldValue" label="Width"></v-text-field>
 
-                    <v-text-field label="Height"></v-text-field>
+                    <v-text-field id="height-val" v-model="textFieldValue2" label="Height"></v-text-field>
+
+                <v-btn v-on:click="lightOn = !lightOn" id="gridOff" class="d-flex mb-3" variant="tonal">
+                    <div v-if="lightOn">Grid Off</div>
+                    <div v-else>Grid On</div>
+                </v-btn>
 
                 <v-btn class="d-flex" variant="tonal">
                     Export
@@ -40,7 +43,7 @@
             </v-col>
 
             <v-col class="border-md rounded" cols="9" style="background-color: #555555;">
-                <div id="gridLeader" style="height: 90vh; display: grid;background-color: white;grid-template-columns: repeat(24, 1fr);">
+                <div id="gridLeader" style="height: 90vh; display: grid;background-color: white;">
 
 
 
@@ -78,6 +81,10 @@
 
 </html>
 <script>
+
+    $(document).ready(function(){
+
+
     const { createApp } = Vue
     const { createVuetify } = Vuetify
     const vuetify = createVuetify()
@@ -85,27 +92,83 @@
     const app = Vue.createApp({
         data() {
             return {
-                message: "Hello World!"
+                textFieldValue: 24,
+                textFieldValue2: 24,
+                lightOn: true
             }
         }
     })
 
     app.use(vuetify).mount('#app')
 
-    $(document).ready(function(){
 
-        for(i = 0; i <= 23; i++){
-            for(j = 0; j <= 23; j++) {
-                $("#gridLeader").append(`<div class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+
+        color = "#000000"
+        rows = 24
+        columns = 23
+        light = true
+
+        for(i = 1; i <= 24; i++){
+            for(j = 1; j <= 24; j++) {
+                $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
             }
         }
 
-        $(".gridKid").on("click",function (e){
+        $(document).on("click", ".gridKid", function (e){
             console.log("efe")
-            $(this).css("background-color", "black");
+            $(this).css("background-color", color);
         })
 
+        $("#color1").on("change", function (){
+            $("#gridLeader").css("background-color",$("#color1").val());
+        })
+
+        $("#color2").on("change", function (){
+            color = $("#color2").val();
+        })
+
+        $("#width-val").on("focusout", function (){
+            columns = $("#width-val").val();
+            $("#gridLeader").html("");
+
+            for(i = 1; i <= rows; i++){
+                for(j = 1; j <= columns; j++) {
+                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                }
+            }
+
+        })
+
+        $("#height-val").on("focusout", function (){
+
+            rows = $("#height-val").val();
+            $("#gridLeader").html("");
+
+            for(i = 1; i <= rows; i++){
+                for(j = 1; j <= columns; j++) {
+                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                }
+            }
+
+        })
+
+        $("#gridOff").on("click",function (){
+            if(light){
+                $(".gridKid").css("border","none");
+                light = false
+            }
+            else{
+                $(".gridKid").css("border","1px solid black");
+                light = true
+            }
+
+
+        })
+
+
     });
+
+
 
 
 </script>
