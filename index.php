@@ -17,7 +17,7 @@
 
 <div id="app" style="min-height: 100vh;background-color: #121212; color:white;">
 
-    <v-container fluid style="background-color: #121212; min-height: 10vh;">
+    <v-container fluid style="background-color: #232323; min-height: 10vh;">
         <h1 class="text-center">PixelArk</h1>
 
     </v-container>
@@ -25,13 +25,26 @@
     <v-container fluid style="background-color: #333333; min-height: 90vh;">
         <v-container>
 
-        <v-row justify="center">
-            <v-col align="center" class="border-md" cols="4" style="min-height: 85vh;">
-                <div>hello</div>
+        <v-row justify="center" class="ga-8">
+            <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="min-height: 85vh;background-color: #555555;">
+                <input id="color1" style="display: flex;" type="color" />
+                <label for="color1"><i>Background Color</i></label>
+
+                <input id="color2" style="display: flex;" type="color" />
+                <label for="color2"><i>Main Color</i></label>
+
+                    <v-text-field label="Width"></v-text-field>
+
+                    <v-text-field label="Height"></v-text-field>
+
+                <v-btn class="d-flex" variant="tonal">
+                    Export
+                </v-btn>
+
             </v-col>
 
-            <v-col class="border-md" cols="8">
-                <canvas class="border-sm" style="height:100%;width: 100%;background-color: white;">
+            <v-col class="border-md rounded" cols="9" style="background-color: #555555;">
+                <canvas id="paintCanvas" class="border-sm" style="height:100%;width: 100%;background-color: white;">
 
 
                 </canvas>
