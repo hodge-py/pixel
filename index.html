@@ -20,7 +20,7 @@
 
         <v-row justify="center" align-items="center" class="ga-8" >
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="min-height: 80vh;background-color: #555555;">
-                <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PixelArk</h1>
+                <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PxlArt</h1>
                 <input id="color1" style="display: flex;" class="w-100" type="color" value="#ffffff" />
                 <label class="pb-2" for="color1"><i>Background Color</i></label>
 
@@ -36,13 +36,15 @@
                     <div v-else>Grid On</div>
                 </v-btn>
 
-                <v-btn class="d-flex mb-3" variant="tonal">
+                <v-btn v-on:click="downloadPNG" class="d-flex mb-3" variant="tonal">
                     Export
                 </v-btn>
 
+                <div class="d-flex justify-content-center">
                 <v-switch id="switcher" v-on:click="eraseText" color="primary" class="d-flex mb-3" label="Erase" variant="tonal">
                     Erase
                 </v-switch>
+                </div>
 
                 <v-btn v-on:click="clearText" class="d-flex" variant="tonal">
                     Clear
@@ -85,6 +87,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.13/dist/vuetify.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 
@@ -120,6 +123,15 @@
                 else{
                     color = $("#color2").val();
                 }
+            },
+            downloadPNG(){
+                domtoimage.toJpeg(document.getElementById('gridLeader'), { quality: 0.95 })
+                    .then(function (dataUrl) {
+                        var link = document.createElement('a');
+                        link.download = 'my-image-name.jpeg';
+                        link.href = dataUrl;
+                        link.click();
+                    });
             }
         }
     })
@@ -130,7 +142,7 @@
         background = "#ffffff"
         color = "#000000"
         rows = 24
-        columns = 23
+        columns = 24
         light = true
 
         for(i = 1; i <= 24; i++){
@@ -159,7 +171,7 @@
         })
 
         $("#width-val").on("focusout", function (){
-            columns = $("#width-val").val();
+            rows = $("#width-val").val();
             $("#gridLeader").html("");
 
             for(i = 1; i <= rows; i++){
@@ -172,7 +184,7 @@
 
         $("#height-val").on("focusout", function (){
 
-            rows = $("#height-val").val();
+            columns = $("#height-val").val();
             $("#gridLeader").html("");
 
             for(i = 1; i <= rows; i++){
