@@ -41,8 +41,16 @@
                     <v-btn v-on:click="colorGrab" id="colorGrab" class="">Color Grabber</v-btn>
                 </v-btn-toggle>
 
+                <v-btn v-on:click="saveProject" class="d-flex mb-3" variant="tonal">
+                    Save Project
+                </v-btn>
+                <v-btn v-on:click="importProject" class="d-flex mb-3" variant="tonal">
+                    Import Project
+                </v-btn>
+                <input v-on:change="fileHandle" id='fileid' accept="application/JSON" type='file' hidden/>
+
                 <v-btn v-on:click="downloadPNG" class="d-flex mb-3" variant="tonal">
-                    Export
+                    Export JPG
                 </v-btn>
 
                 <div class="d-flex justify-content-center">

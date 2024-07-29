@@ -41,7 +41,35 @@ $(document).ready(function(){
             },
             colorGrab(){
                 colorgrab = !colorgrab;
+            },
+            saveProject(){
+                var data = JSON.stringify($("#gridLeader").html())
+                var a = document.createElement("a");
+                var file = new Blob([data], {type: "application/json"});
+                a.href = URL.createObjectURL(file);
+                a.download = "project";
+                a.click();
+            },
+
+            importProject(){
+                document.getElementById('fileid').click();
+
+            },
+
+            fileHandle(){
+                var myFile = $('#fileid').prop('files');
+                if(myFile.length > 0){
+                $("#gridLeader").html("");
+                var reader = new FileReader();
+
+                reader.addEventListener("load", e => {
+                    console.log(e.target.result, JSON.parse(reader.result))
+                    $("#gridLeader").html(JSON.parse(reader.result));
+                });
+
+                reader.readAsText(myFile[0])
             }
+                }
         }
     })
 
