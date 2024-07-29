@@ -28,7 +28,7 @@
                 <input id="color2" style="display: flex;" class="w-100" type="color" />
                 <label class="pb-2" for="color2"><i>Main Color</i></label>
 
-                    <v-text-field id="width-val" v-model="textFieldValue" label="Width"></v-text-field>
+                    <v-text-field id="width-val" name="width" v-model="textFieldValue" label="Width"></v-text-field>
 
                     <v-text-field id="height-val" v-model="textFieldValue2" label="Height"></v-text-field>
 
@@ -94,142 +94,8 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
-
+<script src="js/script.js"></script>
 
 
 </html>
-<script>
 
-    $(document).ready(function(){
-
-
-    const { createApp } = Vue
-    const { createVuetify } = Vuetify
-    const vuetify = createVuetify()
-
-    const app = Vue.createApp({
-        data() {
-            return {
-                textFieldValue: 24,
-                textFieldValue2: 24,
-                lightOn: true,
-                erase: false,
-                toggle: null
-            }
-        },
-        methods: {
-            clearText() {
-                $(".gridKid").css("background-color","transparent");
-            },
-            eraseText(){
-                this.erase = !this.erase
-                if(this.erase){
-                    color = "transparent"
-                }
-                else{
-                    color = $("#color2").val();
-                }
-            },
-            downloadPNG(){
-                domtoimage.toJpeg(document.getElementById('gridLeader'), { quality: 0.95 })
-                    .then(function (dataUrl) {
-                        var link = document.createElement('a');
-                        link.download = 'my-image-name.jpeg';
-                        link.href = dataUrl;
-                        link.click();
-                    });
-            },
-            colorGrab(){
-                colorgrab = !colorgrab;
-            }
-        }
-    })
-
-    app.use(vuetify).mount('#app')
-
-        tmp = "#000000"
-        background = "#ffffff"
-        color = "#000000"
-        rows = 24
-        columns = 24
-        light = true
-        colorgrab = false
-
-        for(i = 1; i <= 24; i++){
-            for(j = 1; j <= 24; j++) {
-                $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
-            }
-        }
-
-        $(document).on("mousedown", ".gridKid", function (e){
-            if(colorgrab === true){
-                const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
-                color = rgb2hex($(this).css("background-color"));
-                $("#color2").val(color);
-            }
-            else {
-                $(this).css("background-color", color);
-            }
-        })
-
-        $("#color1").on("change", function (){
-            background = $("#color1").val();
-            $("#gridLeader").css("background-color",background);
-        })
-
-        $("#color2").on("change", function (){
-            if (color == "transparent"){
-
-            }
-            else{
-                color = $("#color2").val();
-            }
-
-        })
-
-        $("#width-val").on("focusout", function (){
-            rows = $("#width-val").val();
-            $("#gridLeader").html("");
-
-            for(i = 1; i <= rows; i++){
-                for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
-                }
-            }
-
-        })
-
-        $("#height-val").on("focusout", function (){
-
-            columns = $("#height-val").val();
-            $("#gridLeader").html("");
-
-            for(i = 1; i <= rows; i++){
-                for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
-                }
-            }
-
-        })
-
-        $("#gridOff").on("click",function (){
-            if(light){
-                $(".gridKid").css("border","none");
-                light = !light
-            }
-            else{
-                $(".gridKid").css("border","1px solid black");
-                light = !light
-            }
-
-
-        })
-
-
-
-    });
-
-
-
-
-</script>
