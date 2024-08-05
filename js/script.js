@@ -10,9 +10,12 @@ $(document).ready(function(){
             return {
                 textFieldValue: 24,
                 textFieldValue2: 24,
+                canvasHei: 500,
+                canvasWid: 500,
                 lightOn: true,
                 erase: false,
-                toggle: null
+                toggle: null,
+                zoomNumber: 1
             }
         },
         methods: {
@@ -69,7 +72,20 @@ $(document).ready(function(){
 
                 reader.readAsText(myFile[0])
             }
-                }
+                },
+
+            zoomIn() {
+                console.log("zoomIn");
+                this.zoomNumber += 0.1
+                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
+            },
+
+            zoomOut() {
+                this.zoomNumber -= 0.1;
+                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
+            }
+
+
         }
     })
 
