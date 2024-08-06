@@ -77,13 +77,12 @@ $(document).ready(function(){
                 },
 
             zoomIn() {
-                console.log("zoomIn");
-                this.zoomNumber += 0.1
+                this.zoomNumber = parseFloat($("#gridLeader").css("zoom")) + 0.1
                 $("#gridLeader").css("zoom", `${this.zoomNumber}`);
             },
 
             zoomOut() {
-                this.zoomNumber -= 0.1;
+                this.zoomNumber = parseFloat($("#gridLeader").css("zoom")) - 0.1
                 $("#gridLeader").css("zoom", `${this.zoomNumber}`);
             },
 
