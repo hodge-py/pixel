@@ -111,7 +111,7 @@ $(document).ready(function(){
 
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
-            $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+            $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
         }
     }
 
@@ -174,7 +174,7 @@ $(document).ready(function(){
 
             for(i = 1; i <= rows; i++){
                 for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
                 }
             }
         }
@@ -193,7 +193,7 @@ $(document).ready(function(){
 
             for(i = 1; i <= rows; i++){
                 for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: 1px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
                 }
             }
         }
@@ -208,10 +208,30 @@ $(document).ready(function(){
             light = !light
         }
         else{
-            $(".gridKid").css("border","1px solid black");
+            $(".gridKid").css("border",".01px solid black");
             light = !light
         }
 
+
+    })
+
+    $("#main-col").on("mousewheel", function (e){
+        if(e.originalEvent.wheelDelta /120 > 0) {
+            e.preventDefault();
+            zoom = $("#gridLeader").css("zoom");
+            if(e.ctrlKey){
+                zoom = parseFloat(zoom) + .1;
+                $("#gridLeader").css("zoom", `${zoom}`);
+            }
+        }
+        else{
+            e.preventDefault();
+            zoom = $("#gridLeader").css("zoom");
+            if(e.ctrlKey){
+                zoom = parseFloat(zoom) - .1;
+                $("#gridLeader").css("zoom", `${zoom}`);
+            }
+        }
 
     })
 
