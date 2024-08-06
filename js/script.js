@@ -34,6 +34,8 @@ $(document).ready(function(){
                 }
             },
             downloadPNG(){
+                this.zoomNumber = 1;
+                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
                 domtoimage.toJpeg(document.getElementById('gridLeader'), { quality: 0.95 })
                     .then(function (dataUrl) {
                         var link = document.createElement('a');
@@ -83,6 +85,14 @@ $(document).ready(function(){
             zoomOut() {
                 this.zoomNumber -= 0.1;
                 $("#gridLeader").css("zoom", `${this.zoomNumber}`);
+            },
+
+            setWidth(e){
+                $("#gridLeader").css("width", this.canvasWid);
+            },
+
+            setHeight(){
+                $("#gridLeader").css("height", this.canvasHei);
             }
 
 

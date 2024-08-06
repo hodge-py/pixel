@@ -35,9 +35,9 @@
 
                     <v-text-field id="height-val" v-model="textFieldValue2" label="Grid Height"></v-text-field>
 
-                <v-text-field id="canvas-width" v-model="canvasWid" label="Canvas Width"></v-text-field>
+                <v-text-field id="canvas-width" v-on:change="setWidth" v-model="canvasWid" label="Canvas Width"></v-text-field>
 
-                <v-text-field id="canvas-height" v-model="canvasHei" label="Canvas Height"></v-text-field>
+                <v-text-field id="canvas-height" v-on:change="setHeight" v-model="canvasHei" label="Canvas Height"></v-text-field>
 
 
                 <v-btn v-on:click="lightOn = !lightOn" id="gridOff" class="d-flex mb-3" variant="tonal">
@@ -80,7 +80,7 @@
             </v-col>
 
             <v-col class="border-md rounded" cols="7" style="background-color: #555555; overflow: auto; height: 90vh;">
-                <div id="gridCon" class="" style="height: 100vh; width: 100vh;">
+                <div id="gridCon" class="" style="height: 100vh; width: 100vh; margin: 15%;">
                 <div id="gridLeader" style="height: 500px; width: 500px; display: grid;background-color: white;flex:none">
 
                 </div>
