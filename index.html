@@ -32,6 +32,8 @@
                 <input id="color2" style="display: flex;" class="w-100" type="color" />
                 <label class="pb-2" for="color2"><i>Main Color</i></label>
 
+                <v-btn v-on:click="transparent" class="d-flex mb-3" variant="tonal">Transparent<br>Background</v-btn>
+
                     <v-text-field id="width-val" name="width" v-model="textFieldValue" label="Grid Width"></v-text-field>
 
                     <v-text-field id="height-val" v-model="textFieldValue2" label="Grid Height"></v-text-field>
@@ -63,7 +65,7 @@
                 <input v-on:change="fileHandle" id='fileid' accept="application/JSON" type='file' hidden/>
 
                 <v-btn v-on:click="downloadPNG" class="d-flex mb-3" variant="tonal">
-                    Export JPG
+                    Export PNG
                 </v-btn>
 
                 <div class="d-flex justify-content-center">
@@ -80,9 +82,9 @@
 
             </v-col>
 
-            <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #555555; overflow: auto; height: 90vh;">
+            <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 90vh;">
                 <div id="gridCon" class="" style="height: 100vh; width: 100vh; margin: 15%;">
-                <div id="gridLeader" style="height: 500px; width: 500px; display: grid;background-color: white;flex:none">
+                <div id="gridLeader" style="height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: .01px solid black">
 
                 </div>
                 </div>

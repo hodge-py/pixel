@@ -35,14 +35,24 @@ $(document).ready(function(){
             },
             downloadPNG(){
                 this.zoomNumber = 1;
-                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
-                domtoimage.toJpeg(document.getElementById('gridLeader'), { quality: 0.95 })
+                $("#gridLeader").css("zoom", this.zoomNumber);
+                $("#gridLeader").css("border", "none");
+                domtoimage.toPng(document.getElementById('gridLeader'))
                     .then(function (dataUrl) {
+                        $("#gridLeader").css("border", "none");
+                        var img = new Image();
+                        img.src = dataUrl;
                         var link = document.createElement('a');
-                        link.download = 'my-image-name.jpeg';
-                        link.href = dataUrl;
+                        link.download = 'my-image-name.png';
+                        link.href = img.src;
                         link.click();
+                        $("#gridLeader").css("border", ".01px solid black");
+                    })
+                    .catch(function (error) {
+                        console.error('oops, something went wrong!', error);
                     });
+
+
             },
             colorGrab(){
                 colorgrab = !colorgrab;
@@ -92,6 +102,10 @@ $(document).ready(function(){
 
             setHeight(){
                 $("#gridLeader").css("height", this.canvasHei);
+            },
+
+            transparent(){
+                $("#gridLeader").css("background-color", "transparent");
             }
 
 
