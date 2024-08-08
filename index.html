@@ -22,7 +22,7 @@
 
         <v-container class="d-flex flex-column align-items-center" style="padding-top: 0%;padding-bottom: 0%;">
 
-            <v-switch @click="changeMode" label="Change Mode" inset></v-switch>
+            <v-switch style="" @click="changeMode" label="Change Mode" ></v-switch>
 
         <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="">
             <v-spacer></v-spacer>
@@ -113,11 +113,13 @@
                     <div v-else>Grid On</div>
                 </v-btn>
 
+
+
             </v-col>
 
             <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 89vh;">
                 <div id="gridCombine" class="" style="height: 100vh; width: 100vh; margin: 15%;">
-                    <div id="gridFollow" style="height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: .01px solid black">
+                    <div id="gridFollow" style="margin:0; padding:0; height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: 0 solid black; gap: 0;">
 
                     </div>
                 </div>
@@ -131,7 +133,7 @@
         </v-row>
 
 
-
+            <img id="dragTest" src="./my-image-name.png">
 
 
         </v-container>
@@ -156,6 +158,7 @@
 <script src="./js/dom-to-image.min.js"></script>
 </body>
 <script src="./js/script.js"></script>
+<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"></script>
 
 
 </html>

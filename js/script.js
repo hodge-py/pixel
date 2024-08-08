@@ -142,11 +142,60 @@ $(document).ready(function(){
         }
     }
 
+
     for(i = 1; i <= 20; i++){
         for(j = 1; j <= 20; j++) {
-            $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+            if((j+i)%2 === 0) {
+                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+            }
+            else{
+                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='background-color: black; grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+            }
+
         }
     }
+
+    $( "#dragTest" ).draggable({containment: "#gridFollow"});
+
+    $(".gridGrandkid").droppable({
+        accept: "#dragTest",
+        drop: function(e, ui) {
+            var cPPos = ui.position;
+            var cOPos = ui.offset;
+            var cPosOff = {
+                top: Math.round(cOPos.top) % 90,
+                left: Math.round(cOPos.left) % 83
+            };
+            var sPos = {
+                top: Math.round(cOPos.top),
+                left: Math.round(cOPos.left)
+            };
+            console.log("Dropped", cPPos, cOPos, cPosOff, sPos);
+            var $item = ui.draggable;
+            if (cPosOff.top > 0 && cPosOff.top < 70) {
+                sPos.top = sPos.top - cPosOff.top;
+                console.log("DROP - TOP: " + cOPos.top + " lower to " + sPos.top);
+            } else {
+                sPos.top = sPos.top + (90 - cPosOff.top);
+                console.log("DROP - TOP: " + cOPos.top + " rise to " + sPos.top);
+            }
+            if (cPosOff.left > 0 && cPosOff.left < 61) {
+                sPos.left = sPos.left - cPosOff.left;
+                console.log("DROP - LEFT: " + cOPos.left + " left to " + sPos.left);
+            } else {
+                sPos.left = sPos.left + (83 - cPosOff.left);
+                console.log("DROP - LEFT: " + cOPos.left + " right to " + sPos.left);
+            }
+            $item.appendTo($(this)).css({
+                margin: 0,
+                position: "absolute",
+                top: sPos.top + "px",
+                left: sPos.left + "px"
+            });
+        }
+    });
+
+
 
     var mouseDown = false;
 
