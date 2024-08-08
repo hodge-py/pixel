@@ -149,7 +149,7 @@ $(document).ready(function(){
                 $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
             }
             else{
-                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='background-color: black; grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='background-color: rgba(255,255,255,.2); grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
             }
 
         }
