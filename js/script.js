@@ -16,7 +16,8 @@ $(document).ready(function(){
                 erase: false,
                 toggle: null,
                 zoomNumber: 1,
-                mode: false
+                mode: true,
+                label1: "Draw"
             }
         },
         methods: {
@@ -109,17 +110,43 @@ $(document).ready(function(){
                 $("#gridLeader").css("background-color", "transparent");
             },
 
-            changeMode(){
+            changeMode(event){
                 this.mode = !this.mode;
-                console.log(this.mode)
                 if(this.mode){
-                    $("#pixelRow").css("display", "none");
-                    $("#CombineRow").css("display", "flex");
-                }
-                else{
+                    this.label1 = "Draw"
                     $("#pixelRow").css("display", "flex");
                     $("#CombineRow").css("display", "none");
                 }
+                else{
+                    this.label1 = "TileMap"
+                    $("#pixelRow").css("display", "none");
+                    $("#CombineRow").css("display", "flex");
+                }
+            },
+
+            stickWidth(){
+
+                if(confirm("Change width of grid?")){
+                    rows = $("#stickWidth").val();
+                    $("#gridFollow").html("");
+
+                    for(i = 1; i <= rows; i++){
+                        for(j = 1; j <= columns; j++) {
+                            if((j+i)%2 === 0) {
+                                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+                            }
+                            else{
+                                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='background-color: rgba(255,255,255,.2); grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+                            }
+                        }
+                    }
+                }
+                else{
+
+
+                }
+
+                mouseDown = false;
             }
 
 
@@ -305,6 +332,9 @@ $(document).ready(function(){
         }
 
     })
+
+
+
 
 
 

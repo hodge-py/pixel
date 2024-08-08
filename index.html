@@ -22,7 +22,7 @@
 
         <v-container class="d-flex flex-column align-items-center" style="padding-top: 0%;padding-bottom: 0%;">
 
-            <v-switch style="" @click="changeMode" label="Change Mode" ></v-switch>
+            <v-switch style="" @click="changeMode" :label="this.label1" ></v-switch>
 
         <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="">
             <v-spacer></v-spacer>
@@ -99,7 +99,7 @@
         </v-row>
 
 
-
+        <!---   Change Mode    --->
 
 
         <v-row id="CombineRow" style="display: none; padding-top: 0%;padding-bottom: 0%; margin-top: 0; margin-bottom: 0;" justify="center" align-items="center" class="ga-8">
@@ -113,6 +113,9 @@
                     <div v-else>Grid On</div>
                 </v-btn>
 
+                <v-text-field id="stickWidth" v-on:change="stickWidth" label="Grid Width"></v-text-field>
+
+                <v-text-field id=""  label="Grid Height"></v-text-field>
 
 
             </v-col>
