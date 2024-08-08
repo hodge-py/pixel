@@ -155,45 +155,19 @@ $(document).ready(function(){
         }
     }
 
-    $( "#dragTest" ).draggable({containment: "#gridFollow"});
+    $( "#dragTest" ).draggable({snap: ".gridGrandkid", snapMode: "inner"});
 
-    $(".gridGrandkid").droppable({
-        accept: "#dragTest",
-        drop: function(e, ui) {
-            var cPPos = ui.position;
-            var cOPos = ui.offset;
-            var cPosOff = {
-                top: Math.round(cOPos.top) % 90,
-                left: Math.round(cOPos.left) % 83
-            };
-            var sPos = {
-                top: Math.round(cOPos.top),
-                left: Math.round(cOPos.left)
-            };
-            console.log("Dropped", cPPos, cOPos, cPosOff, sPos);
-            var $item = ui.draggable;
-            if (cPosOff.top > 0 && cPosOff.top < 70) {
-                sPos.top = sPos.top - cPosOff.top;
-                console.log("DROP - TOP: " + cOPos.top + " lower to " + sPos.top);
-            } else {
-                sPos.top = sPos.top + (90 - cPosOff.top);
-                console.log("DROP - TOP: " + cOPos.top + " rise to " + sPos.top);
-            }
-            if (cPosOff.left > 0 && cPosOff.left < 61) {
-                sPos.left = sPos.left - cPosOff.left;
-                console.log("DROP - LEFT: " + cOPos.left + " left to " + sPos.left);
-            } else {
-                sPos.left = sPos.left + (83 - cPosOff.left);
-                console.log("DROP - LEFT: " + cOPos.left + " right to " + sPos.left);
-            }
-            $item.appendTo($(this)).css({
-                margin: 0,
-                position: "absolute",
-                top: sPos.top + "px",
-                left: sPos.left + "px"
+    $(".gridGrandkid").droppable({accept: "#dragTest", drop: function(event, ui) {
+            var $this = $(this);
+            ui.draggable.position({
+                my: "center",
+                at: "center",
+                of: $this,
+                using: function(pos) {
+                    $(this).animate(pos, 200, "linear");
+                }
             });
-        }
-    });
+        }})
 
 
 
