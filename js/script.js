@@ -139,7 +139,12 @@ $(document).ready(function(){
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
             $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
-            $("#gridFollow").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+        }
+    }
+
+    for(i = 1; i <= 20; i++){
+        for(j = 1; j <= 20; j++) {
+            $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
         }
     }
 
