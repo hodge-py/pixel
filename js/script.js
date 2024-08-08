@@ -113,12 +113,13 @@ $(document).ready(function(){
             changeMode(event){
                 this.mode = !this.mode;
                 if(this.mode){
-                    this.label1 = "Draw"
+                    $("#main-label").text("Draw");
                     $("#pixelRow").css("display", "flex");
                     $("#CombineRow").css("display", "none");
                 }
                 else{
-                    this.label1 = "TileMap"
+                    console.log("heyyyy")
+                    $("#main-label").text("TileMap");
                     $("#pixelRow").css("display", "none");
                     $("#CombineRow").css("display", "flex");
                 }
@@ -128,6 +129,31 @@ $(document).ready(function(){
 
                 if(confirm("Change width of grid?")){
                     rows = $("#stickWidth").val();
+                    $("#gridFollow").html("");
+
+                    for(i = 1; i <= rows; i++){
+                        for(j = 1; j <= columns; j++) {
+                            if((j+i)%2 === 0) {
+                                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+                            }
+                            else{
+                                $("#gridFollow").append(`<div draggable="false" class="gridGrandkid" style='background-color: rgba(255,255,255,.2); grid-column: ${i}; grid-row: ${j}; margin:0; padding:0;'></div>`)
+                            }
+                        }
+                    }
+                }
+                else{
+
+
+                }
+
+                mouseDown = false;
+            },
+
+            stickHeight(){
+
+                if(confirm("Change width of grid?")){
+                    columns = $("#stickHeight").val();
                     $("#gridFollow").html("");
 
                     for(i = 1; i <= rows; i++){

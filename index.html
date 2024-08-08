@@ -21,8 +21,10 @@
     <v-container class="d-flex align-items-center" fluid style="background-color: #333333; min-height: 100vh;padding-top: 0%">
 
         <v-container class="d-flex flex-column align-items-center" style="padding-top: 0%;padding-bottom: 0%;">
-
-            <v-switch style="" @click="changeMode" :label="this.label1" ></v-switch>
+            <div class="d-flex flex-column align-items-center">
+                <div id="main-label">Draw</div>
+            <v-switch id="switcher2" style="" @click="changeMode"  ></v-switch>
+            </div>
 
         <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="">
             <v-spacer></v-spacer>
@@ -115,7 +117,7 @@
 
                 <v-text-field id="stickWidth" v-on:change="stickWidth" label="Grid Width"></v-text-field>
 
-                <v-text-field id=""  label="Grid Height"></v-text-field>
+                <v-text-field id="stickHeight" v-on:change="stickHeight" label="Grid Height"></v-text-field>
 
 
             </v-col>
