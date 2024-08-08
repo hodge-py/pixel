@@ -15,7 +15,8 @@ $(document).ready(function(){
                 lightOn: true,
                 erase: false,
                 toggle: null,
-                zoomNumber: 1
+                zoomNumber: 1,
+                mode: false
             }
         },
         methods: {
@@ -106,6 +107,19 @@ $(document).ready(function(){
 
             transparent(){
                 $("#gridLeader").css("background-color", "transparent");
+            },
+
+            changeMode(){
+                this.mode = !this.mode;
+                console.log(this.mode)
+                if(this.mode){
+                    $("#pixelRow").css("display", "none");
+                    $("#CombineRow").css("display", "flex");
+                }
+                else{
+                    $("#pixelRow").css("display", "flex");
+                    $("#CombineRow").css("display", "none");
+                }
             }
 
 
@@ -125,6 +139,7 @@ $(document).ready(function(){
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
             $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+            $("#gridFollow").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
         }
     }
 
@@ -218,6 +233,19 @@ $(document).ready(function(){
     })
 
     $("#gridOff").on("click",function (){
+        if(light){
+            $(".gridKid").css("border","none");
+            light = !light
+        }
+        else{
+            $(".gridKid").css("border",".01px solid black");
+            light = !light
+        }
+
+
+    })
+
+    $("#gridOff2").on("click",function (){
         if(light){
             $(".gridKid").css("border","none");
             light = !light

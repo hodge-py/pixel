@@ -18,10 +18,13 @@
 
 <div id="app" style="min-height: 100vh;background-color: #121212; color:white;">
 
-    <v-container class="d-flex align-items-center" fluid style="background-color: #333333; min-height: 100vh;">
-        <v-container>
+    <v-container class="d-flex align-items-center" fluid style="background-color: #333333; min-height: 100vh;padding-top: 0%">
 
-        <v-row justify="center" align-items="center" class="ga-8" style="">
+        <v-container class="d-flex flex-column align-items-center" style="padding-top: 0%;padding-bottom: 0%;">
+
+            <v-switch @click="changeMode" label="Change Mode" inset></v-switch>
+
+        <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="">
             <v-spacer></v-spacer>
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="height: 90vh; background-color: #555555; overflow: auto;">
                 <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PxlArt</h1>
@@ -94,6 +97,41 @@
 
 
         </v-row>
+
+
+
+
+
+        <v-row id="CombineRow" style="display: none; padding-top: 0%;padding-bottom: 0%; margin-top: 0; margin-bottom: 0;" justify="center" align-items="center" class="ga-8">
+
+            <v-spacer></v-spacer>
+            <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="height: 89vh; background-color: #555555; overflow: auto;">
+                <h1 id="title2" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PxlArt</h1>
+                <p style="font-family: 'Public Pixel', sans-serif;">(Beta)</p>
+                <v-btn v-on:click="lightOn = !lightOn" id="gridOff2" class="d-flex mb-3" variant="tonal">
+                    <div v-if="lightOn">Grid Off</div>
+                    <div v-else>Grid On</div>
+                </v-btn>
+
+            </v-col>
+
+            <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 89vh;">
+                <div id="gridCombine" class="" style="height: 100vh; width: 100vh; margin: 15%;">
+                    <div id="gridFollow" style="height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: .01px solid black">
+
+                    </div>
+                </div>
+            </v-col>
+
+            <v-spacer></v-spacer>
+
+
+
+
+        </v-row>
+
+
+
 
 
         </v-container>
