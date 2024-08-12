@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PxlArt Offline</title>
+    <meta name="description" content="Tool for creating pixel drawings">
+    <link rel="preload" media="(min-width:801px)" href="./css/bootstrap.min.css" as="style">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/games.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet" type="text/css">
+    <link rel="preload" media="(min-width:801px)" href="./css/vuetify.min.css" as="style">
+    <link href="./css/vuetify.min.css" rel="stylesheet">
+    <link href="./css/public-pixel.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="app" style="min-height: 100vh;background-color: #444444; color:white;">
+
+    <div class="d-flex flex-column ">
+
+        <div class="d-flex pt-2 pb-2 mb-2" style="background-color: #333333; padding: 0 10% 0 10%;">
+            <h1 style="cursor: pointer;" @click="returnPage">PxlArt (Offline Application)</h1>
+        </div>
+
+        <div class="shadow-lg d-flex flex-column align-items-center p-5" style="height: 80vh; margin: 0 10% 0 10%; row-gap: 5vh;">
+            <h2>PxlArt is also available offline.</h2>
+            <div>This works by using the browser's built in processor to handle running the program.
+            Just open the index.html file in your preferred browser.</div>
+            <h3>Download</h3>
+            <v-btn @click="downloadClick" variant="tonal">Download</v-btn>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script
+    src="./js/vue.global.prod.js">
+</script>
+<script src="./js/vuetify.min.js"></script>
+<script src="./js/jquery-3.7.1.min.js"></script>
+<script src="./js/dom-to-image.min.js"></script>
+</body>
+
+<script>
+
+    const { createApp } = Vue
+    const { createVuetify } = Vuetify
+
+    const vuetify = createVuetify()
+
+
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: "Hello World!"
+            }
+        },
+        methods: {
+
+            downloadClick() {
+                var a = document.createElement("a");
+                a.href = "https://github.com/hodge-py/pixel/archive/refs/heads/main.zip"
+                a.download = "PxlArtOffline";
+                a.click();
+            },
+
+            returnPage(){
+                var a = document.createElement("a");
+                a.href = "./index.html"
+                a.click()
+            }
+
+
+
+        }
+    })
+
+    app.use(vuetify).mount('#app')
+
+</script>
+
+</script>
+<style>
+
+
+</style>
+
+</html>
+
