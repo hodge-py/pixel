@@ -17,7 +17,9 @@ $(document).ready(function(){
                 toggle: null,
                 zoomNumber: 1,
                 mode: true,
-                label1: "Draw"
+                label1: "Draw",
+                transparentGridW: 20,
+                transparentGridH: 20
             }
         },
         methods: {
@@ -118,7 +120,6 @@ $(document).ready(function(){
                     $("#CombineRow").css("display", "none");
                 }
                 else{
-                    console.log("heyyyy")
                     $("#main-label").text("TileMap");
                     $("#pixelRow").css("display", "none");
                     $("#CombineRow").css("display", "flex");
@@ -173,6 +174,27 @@ $(document).ready(function(){
                 }
 
                 mouseDown = false;
+            },
+
+            clickUpload(){
+                document.getElementById('fileImg').click();
+            },
+
+            uploadImg() {
+                var myFile = $('#fileImg').prop('files');
+                if(myFile.length > 0){
+                    var reader = new FileReader();
+
+                    reader.addEventListener("load", e => {
+                        //console.log(reader.result);
+                        $("#gridImg").append(`<div class="div-img" style="display: flex; align-items: center;">
+                <img style="object-fit: contain;"  src="${reader.result}">
+
+                </div>`);
+                    });
+
+                    reader.readAsDataURL(myFile[0])
+                }
             }
 
 
@@ -188,6 +210,7 @@ $(document).ready(function(){
     columns = 24
     light = true
     colorgrab = false
+    imgSelect = ""
 
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
@@ -207,20 +230,6 @@ $(document).ready(function(){
 
         }
     }
-
-    $( "#dragTest" ).draggable({snap: ".gridGrandkid", snapMode: "inner"});
-
-    $(".gridGrandkid").droppable({accept: "#dragTest", drop: function(event, ui) {
-            var $this = $(this);
-            ui.draggable.position({
-                my: "center",
-                at: "center",
-                of: $this,
-                using: function(pos) {
-                    $(this).animate(pos, 200, "linear");
-                }
-            });
-        }})
 
 
 
@@ -361,6 +370,22 @@ $(document).ready(function(){
 
 
 
+
+
+    // Start of title map script
+
+    $(document).on("click",".div-img", function(){
+        $(".div-img").css("background-color", "transparent")
+        $(this).css("background-color", "blue");
+        imgSelect = $(this).children()[0]
+        imgSelect = $(imgSelect).attr('src');
+        console.log(imgSelect);
+    })
+
+    $(".gridGrandkid").on("mousedown", function(){
+        $(this).css("background-image",`url(${imgSelect})`);
+        console.log($(this).css("background-image"));
+    })
 
 
 

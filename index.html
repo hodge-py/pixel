@@ -7,26 +7,26 @@
     <meta name="description" content="Tool for creating pixel drawings">
     <link rel="preload" media="(min-width:801px)" href="./css/bootstrap.min.css" as="style">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link href="./css/games.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet" type="text/css">
     <link rel="preload" media="(min-width:801px)" href="./css/vuetify.min.css" as="style">
     <link href="./css/vuetify.min.css" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
+    <link href="./css/public-pixel.css" rel="stylesheet">
 
 </head>
 <body>
 
 <div id="app" style="min-height: 100vh;background-color: #121212; color:white;">
 
-    <v-container class="d-flex align-items-center" fluid style="background-color: #333333; min-height: 100vh;padding-top: 0%">
+    <v-container class="d-flex align-items-center" fluid style="background-color: #333333; min-height: 100vh;">
 
-        <v-container class="d-flex flex-column align-items-center" style="padding-top: 0%;padding-bottom: 0%;">
-            <div class="d-flex flex-column align-items-center">
-                <div id="main-label">Draw</div>
-            <v-switch id="switcher2" style="" @click="changeMode"  ></v-switch>
+        <v-container class="d-flex flex-column align-items-center" style="">
+            <div class="form-check form-switch">
+                <input @click="changeMode" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                <label id="main-label" class="form-check-label" for="flexSwitchCheckChecked">Draw</label>
             </div>
 
-        <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="">
+        <v-row id="pixelRow" justify="center" align-items="center" class="ga-8" style="padding-top: 3%;">
             <v-spacer></v-spacer>
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="height: 90vh; background-color: #555555; overflow: auto;">
                 <h1 id="title" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PxlArt</h1>
@@ -104,20 +104,14 @@
         <!---   Change Mode    --->
 
 
-        <v-row id="CombineRow" style="display: none; padding-top: 0%;padding-bottom: 0%; margin-top: 0; margin-bottom: 0;" justify="center" align-items="center" class="ga-8">
-
-            <v-spacer></v-spacer>
+        <v-row id="CombineRow" style="display: none;" justify="center" align-items="center" class="ga-8">
             <v-col align="center" justify="evenly" class="border-md rounded" cols="2" style="height: 89vh; background-color: #555555; overflow: auto;">
                 <h1 id="title2" style="font-family: 'Public Pixel', sans-serif; font-size: 1.5vw; padding-bottom: 3%;">PxlArt</h1>
                 <p style="font-family: 'Public Pixel', sans-serif;">(Beta)</p>
-                <v-btn v-on:click="lightOn = !lightOn" id="gridOff2" class="d-flex mb-3" variant="tonal">
-                    <div v-if="lightOn">Grid Off</div>
-                    <div v-else>Grid On</div>
-                </v-btn>
 
-                <v-text-field id="stickWidth" v-on:change="stickWidth" label="Grid Width"></v-text-field>
+                <v-text-field id="stickWidth" v-model="transparentGridW" v-on:change="stickWidth" label="Grid Width"></v-text-field>
 
-                <v-text-field id="stickHeight" v-on:change="stickHeight" label="Grid Height"></v-text-field>
+                <v-text-field id="stickHeight" v-model="transparentGridH" v-on:change="stickHeight" label="Grid Height"></v-text-field>
 
 
             </v-col>
@@ -130,15 +124,28 @@
                 </div>
             </v-col>
 
-            <v-spacer></v-spacer>
+            <v-col id="main-col" class="border-md rounded" style="background-color: #555555; overflow: auto; height: 89vh; ">
+                <div id="gridImg" class="d-flex flex-column" style="height: 80vh;">
+                <div class="div-img d-flex align-items-center">
+                <img style="object-fit: contain;"  src="./grass.jpg">
+
+                </div>
+                <div class="div-img d-flex align-items-center">
+                    <img style="object-fit: contain;" src="./grass2.jpg">
+                </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                <v-btn @click="clickUpload" id="uploadPic" class="btn btn-primary">Upload</v-btn>
+                    <input  @change="uploadImg" id='fileImg' type='file' hidden/>
+                </div>
+
+            </v-col>
 
 
 
 
         </v-row>
-
-
-            <img style="z-index: 10;" id="dragTest" src="./my-image-name (2).png">
 
 
         </v-container>
@@ -163,8 +170,20 @@
 <script src="./js/dom-to-image.min.js"></script>
 </body>
 <script src="./js/script.js"></script>
-<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"></script>
 
+<style>
+.div-img{
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:4%;
+}
+
+#uploadPic {
+
+}
+
+</style>
 
 </html>
 
