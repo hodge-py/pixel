@@ -68,7 +68,7 @@ $(document).ready(function(){
             saveProject(){
                 var data = JSON.stringify($("#gridLeader").html())
                 var a = document.createElement("a");
-                var file = new Blob([data], {type: "application/json"});
+                var file = new Blob([data], {type: "application/pxlart"});
                 a.href = URL.createObjectURL(file);
                 a.download = "project";
                 a.click();
