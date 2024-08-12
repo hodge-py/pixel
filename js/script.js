@@ -228,16 +228,21 @@ $(document).ready(function(){
             downloadPNGImg(){
                 $("#gridFollow").css("zoom", $("#gridFollow").css("zoom"));
                 $("#gridFollow").css("border", "none");
+                tmp = $("#gridFollow").html();
+                $(".gridGrandkid").each(function( index ) {
+                    if($(this).css("background-image") === "none"){
+                        $(this).css("background-color", "transparent");
+                    }
+                })
                 domtoimage.toPng(document.getElementById('gridFollow'))
                     .then(function (dataUrl) {
-                        $("#gridFollow").css("border", "none");
                         var img = new Image();
                         img.src = dataUrl;
                         var link = document.createElement('a');
                         link.download = 'my-image-name.png';
                         link.href = img.src;
                         link.click();
-                        $("#gridLeader").css("border", ".01px solid black");
+                        $("#gridFollow").html(tmp);
                     })
                     .catch(function (error) {
                         console.error('oops, something went wrong!', error);
