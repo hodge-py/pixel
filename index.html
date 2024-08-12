@@ -113,10 +113,33 @@
 
                 <v-text-field id="stickHeight" v-model="transparentGridH" v-on:change="stickHeight" label="Grid Height"></v-text-field>
 
+                <v-text-field id="canvas2-width" v-on:change="setWidth2" v-model="canvas2Wid" label="Canvas Width"></v-text-field>
+
+                <v-text-field id="canvas2-height" v-on:change="setHeight2" v-model="canvas2Hei" label="Canvas Height"></v-text-field>
+
+                <v-btn v-on:click="zoomIn2" id="zoomIn2" class="d-flex mb-3" variant="tonal">Zoom In<br>(ctrl+scrollUp)</v-btn>
+                <v-btn v-on:click="zoomOut2" id="zoomOut2" class="d-flex mb-3" variant="tonal">Zoom Out<br>(ctrl+scrollD)</v-btn>
+
+                <v-btn v-on:click="downloadPNGImg" class="d-flex mb-3" variant="tonal">
+                    Export PNG
+                </v-btn>
+
+                <div class="d-flex justify-content-center">
+                <v-switch id="switcher2" color="primary" class="d-flex mb-3" label="Erase" variant="tonal">
+                    Erase
+                </v-switch>
+                </div>
+
+
+
+                <v-btn v-on:click="clearUrl" class="d-flex" variant="tonal">
+                    Clear
+                </v-btn>
+
 
             </v-col>
 
-            <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 89vh;">
+            <v-col id="main-col2" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 89vh;">
                 <div id="gridCombine" class="" style="height: 100vh; width: 100vh; margin: 15%;">
                     <div id="gridFollow" style="margin:0; padding:0; height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: 0 solid black; gap: 0;">
 
@@ -124,8 +147,8 @@
                 </div>
             </v-col>
 
-            <v-col id="main-col" class="border-md rounded" style="background-color: #555555; overflow: auto; height: 89vh; ">
-                <div id="gridImg" class="d-flex flex-column" style="height: 80vh;">
+            <v-col id="main-col3" class="border-md rounded" style="background-color: #555555; overflow: auto; height: 89vh; ">
+                <div id="gridImg" class="d-flex flex-column border mb-2 shadow p-1" style="height: 80vh;">
                 <div class="div-img d-flex align-items-center">
                 <img style="object-fit: contain;"  src="./grass.jpg">
 
@@ -139,6 +162,8 @@
                 <v-btn @click="clickUpload" id="uploadPic" class="btn btn-primary">Upload</v-btn>
                     <input  @change="uploadImg" id='fileImg' type='file' hidden/>
                 </div>
+
+
 
             </v-col>
 

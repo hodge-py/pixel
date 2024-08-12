@@ -19,7 +19,11 @@ $(document).ready(function(){
                 mode: true,
                 label1: "Draw",
                 transparentGridW: 20,
-                transparentGridH: 20
+                transparentGridH: 20,
+                eraseImg: false,
+                canvas2Hei: 500,
+                canvas2Wid: 500,
+                zoomNumber2: 1,
             }
         },
         methods: {
@@ -195,6 +199,49 @@ $(document).ready(function(){
 
                     reader.readAsDataURL(myFile[0])
                 }
+            },
+
+            clearUrl() {
+                if(confirm("Are you sure you want to clear this sheet?")) {
+                    $(".gridGrandkid").css("background-image", "url('')");
+                }
+            },
+
+            setWidth2(e){
+                $("#gridFollow").css("width", this.canvas2Wid);
+            },
+
+            setHeight2(){
+                $("#gridFollow").css("height", this.canvas2Hei);
+            },
+
+            zoomIn2() {
+                this.zoomNumber2 = parseFloat($("#gridFollow").css("zoom")) + 0.1
+                $("#gridFollow").css("zoom", `${this.zoomNumber2}`);
+            },
+
+            zoomOut2() {
+                this.zoomNumber2 = parseFloat($("#gridFollow").css("zoom")) - 0.1
+                $("#gridFollow").css("zoom", `${this.zoomNumber2}`);
+            },
+
+            downloadPNGImg(){
+                $("#gridFollow").css("zoom", $("#gridFollow").css("zoom"));
+                $("#gridFollow").css("border", "none");
+                domtoimage.toPng(document.getElementById('gridFollow'))
+                    .then(function (dataUrl) {
+                        $("#gridFollow").css("border", "none");
+                        var img = new Image();
+                        img.src = dataUrl;
+                        var link = document.createElement('a');
+                        link.download = 'my-image-name.png';
+                        link.href = img.src;
+                        link.click();
+                        $("#gridLeader").css("border", ".01px solid black");
+                    })
+                    .catch(function (error) {
+                        console.error('oops, something went wrong!', error);
+                    });
             }
 
 
@@ -211,6 +258,7 @@ $(document).ready(function(){
     light = true
     colorgrab = false
     imgSelect = ""
+    eraseImg = false
 
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
@@ -382,10 +430,41 @@ $(document).ready(function(){
         console.log(imgSelect);
     })
 
-    $(".gridGrandkid").on("mousedown", function(){
-        $(this).css("background-image",`url(${imgSelect})`);
-        console.log($(this).css("background-image"));
+    $(document).on("mousedown",".gridGrandkid", function(){
+        if(!eraseImg) {
+            $(this).css("background-image", `url(${imgSelect})`);
+        }
+        else{
+            $(this).css("background-image", `url("")`);
+        }
     })
+
+    $(document).on("change", "#switcher2", function(){
+        eraseImg = !eraseImg;
+    })
+
+
+    $("#main-col2").on("mousewheel", function (e){
+
+        if(e.originalEvent.wheelDelta /120 > 0) {
+            e.preventDefault();
+            zoom2 = $("#gridFollow").css("zoom");
+            if(e.ctrlKey){
+                zoom2 = parseFloat(zoom2) + .1;
+                $("#gridFollow").css("zoom", `${zoom2}`);
+            }
+        }
+        else{
+            e.preventDefault();
+            zoom2 = $("#gridFollow").css("zoom");
+            if(e.ctrlKey){
+                zoom2 = parseFloat(zoom2) - .1;
+                $("#gridFollow").css("zoom", `${zoom2}`);
+            }
+        }
+
+    })
+
 
 
 
