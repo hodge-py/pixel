@@ -1,5 +1,5 @@
-# pixel
+# PxlArt
 
-<https://pxlart.xyz/>
+!["Frog"](https://i.ibb.co/f47jvgj/frog.png)
 
-Online tool for drawing pixel related art.
+&copy; Karson Hodge
