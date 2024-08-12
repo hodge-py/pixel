@@ -10,8 +10,8 @@ $(document).ready(function(){
             return {
                 textFieldValue: 24,
                 textFieldValue2: 24,
-                canvasHei: 500,
-                canvasWid: 500,
+                canvasHei: 32,
+                canvasWid: 32,
                 lightOn: true,
                 erase: false,
                 toggle: null,

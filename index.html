@@ -62,25 +62,24 @@
                 </v-btn-toggle>
 
                 <v-btn v-on:click="saveProject" class="d-flex mb-3" variant="tonal">
-                    Save Project
+                    <svg width="16px" height="16px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>save-floppy</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-154.000000, -517.000000)" fill="#ffffff"> <path d="M172,522 C172,521.447 172.448,521 173,521 C173.552,521 174,521.447 174,522 L174,526 C174,526.553 173.552,527 173,527 C172.448,527 172,526.553 172,526 L172,522 L172,522 Z M163,529 L177,529 C177.552,529 178,528.553 178,528 L178,517 L162,517 L162,528 C162,528.553 162.448,529 163,529 L163,529 Z M182,517 L180,517 L180,529 C180,530.104 179.104,531 178,531 L162,531 C160.896,531 160,530.104 160,529 L160,517 L158,517 C155.791,517 154,518.791 154,521 L154,545 C154,547.209 155.791,549 158,549 L182,549 C184.209,549 186,547.209 186,545 L186,521 C186,518.791 184.209,517 182,517 L182,517 Z" id="save-floppy" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
                 </v-btn>
                 <v-btn v-on:click="importProject" class="d-flex mb-3" variant="tonal">
-                    Import Project
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5303 10.4697C15.2374 10.1768 14.7626 10.1768 14.4697 10.4697L12.75 12.1893V4C12.75 3.58579 12.4142 3.25 12 3.25C11.5858 3.25 11.25 3.58579 11.25 4L11.25 12.1893L9.53033 10.4697C9.23744 10.1768 8.76256 10.1768 8.46967 10.4697C8.17678 10.7626 8.17678 11.2374 8.46967 11.5303L11.4697 14.5303C11.7626 14.8232 12.2374 14.8232 12.5303 14.5303L15.5303 11.5303C15.8232 11.2374 15.8232 10.7626 15.5303 10.4697Z" fill="#ffffff"></path> <path d="M17.7476 12C17.2996 12 16.9077 12.2742 16.591 12.591L13.591 15.591C12.7123 16.4697 11.2877 16.4697 10.409 15.591L7.40901 12.591C7.09226 12.2742 6.70041 12 6.25245 12H4C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12H17.7476Z" fill="#ffffff"></path> </g></svg>
                 </v-btn>
                 <input v-on:change="fileHandle" id='fileid' accept=".pxlart" type='file' hidden/>
 
                 <v-btn v-on:click="downloadPNG" class="d-flex mb-3" variant="tonal">
-                    Export PNG
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.3705 10.384C10.7848 10.9698 10.7848 11.9195 11.3705 12.5053L11.4373 12.5721C12.0231 13.1579 12.9728 13.1579 13.5586 12.5721L16.6736 9.45707C16.8178 9.31284 16.9266 9.14656 16.9998 8.96907C16.9999 8.97936 17 8.98967 17 9V17C17 18.1046 16.1046 19 15 19H7C5.89543 19 5 18.1046 5 17V9C5 7.89543 5.89543 7 7 7L14.8511 7C14.7195 7.06882 14.5961 7.15848 14.4855 7.269L11.3705 10.384Z" fill="#ffffff"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2175 4.78249C19.4128 4.97776 19.4128 5.29434 19.2175 5.4896L12.8536 11.8536C12.6583 12.0488 12.3417 12.0488 12.1464 11.8536C11.9512 11.6583 11.9512 11.3417 12.1464 11.1465L18.5104 4.78249C18.7057 4.58723 19.0223 4.58723 19.2175 4.78249Z" fill="#ffffff"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M14 4.5C14 4.22386 14.2239 4 14.5 4H19.5C19.7761 4 20 4.22386 20 4.5V9.5C20 9.77614 19.7761 10 19.5 10C19.2239 10 19 9.77614 19 9.5V5H14.5C14.2239 5 14 4.77614 14 4.5Z" fill="#ffffff"></path> </g></svg>
                 </v-btn>
 
                 <div class="d-flex justify-content-center">
-                <v-switch id="switcher" v-on:click="eraseText" color="primary" class="d-flex mb-3" label="Erase" variant="tonal">
-                    Erase
+                <v-switch id="switcher" v-on:click="eraseText" color="primary" class="d-flex mb-3" label="Eraser" variant="tonal">
                 </v-switch>
                 </div>
 
                 <v-btn v-on:click="clearText" class="d-flex" variant="tonal">
-                    Clear
+                    <svg fill="#ffffff" height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M345.397,81.27V0H166.603v81.27H28.444v48.762h48.762V512h357.587V130.032h48.762V81.27H345.397z M215.365,446.984 h-48.762V154.413h48.762V446.984z M215.365,48.762h81.27V81.27h-81.27V48.762z M345.397,446.984h-48.762V154.413h48.762V446.984z"></path> </g> </g> </g></svg>
                 </v-btn>
 
 
@@ -89,7 +88,7 @@
 
             <v-col id="main-col" class="border-md rounded" cols="7" style="background-color: #999999; overflow: auto; height: 90vh;">
                 <div id="gridCon" class="" style="height: 100vh; width: 100vh; margin: 15%;">
-                <div id="gridLeader" style="height: 500px; width: 500px; display: grid;background-color: transparent;flex:none; border: .01px solid black">
+                <div id="gridLeader" style="height: 32px; width: 32px; display: grid;background-color: transparent;flex:none; border: .01px solid black; zoom: 15;">
 
                 </div>
                 </div>
