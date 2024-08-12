@@ -70,7 +70,7 @@ $(document).ready(function(){
                 var a = document.createElement("a");
                 var file = new Blob([data], {type: "application/pxlart"});
                 a.href = URL.createObjectURL(file);
-                a.download = "project";
+                a.download = "project.pxlart";
                 a.click();
             },
 
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
                 reader.addEventListener("load", e => {
                     console.log(e.target.result, JSON.parse(reader.result))
-                    $("#gridLeader").html(JSON.parse(reader.result));
+                    document.getElementById("gridLeader").innerHTML = JSON.parse(reader.result);
                 });
 
                 reader.readAsText(myFile[0])
