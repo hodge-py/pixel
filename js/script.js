@@ -43,18 +43,18 @@ $(document).ready(function(){
             },
             downloadPNG(){
                 this.zoomNumber = 1;
-                $("#gridLeader").css("zoom", this.zoomNumber);
-                $("#gridLeader").css("border", "none");
+                $(".gridLeader").css("zoom", this.zoomNumber);
+                $(".gridLeader").css("border", "none");
                 domtoimage.toPng(document.getElementById('gridLeader'))
                     .then(function (dataUrl) {
-                        $("#gridLeader").css("border", "none");
+                        $(".gridLeader").css("border", "none");
                         var img = new Image();
                         img.src = dataUrl;
                         var link = document.createElement('a');
                         link.download = 'my-image-name.png';
                         link.href = img.src;
                         link.click();
-                        $("#gridLeader").css("border", ".01px solid black");
+                        $(".gridLeader").css("border", ".01px solid black");
                     })
                     .catch(function (error) {
                         console.error('oops, something went wrong!', error);
@@ -66,7 +66,7 @@ $(document).ready(function(){
                 colorgrab = !colorgrab;
             },
             saveProject(){
-                var data = JSON.stringify($("#gridLeader").html())
+                var data = JSON.stringify($(".gridLeader").html())
                 var a = document.createElement("a");
                 var file = new Blob([data], {type: "application/pxlart"});
                 a.href = URL.createObjectURL(file);
@@ -82,7 +82,7 @@ $(document).ready(function(){
             fileHandle(){
                 var myFile = $('#fileid').prop('files');
                 if(myFile.length > 0){
-                $("#gridLeader").html("");
+                $(".gridLeader").html("");
                 var reader = new FileReader();
 
                 reader.addEventListener("load", e => {
@@ -95,25 +95,25 @@ $(document).ready(function(){
                 },
 
             zoomIn() {
-                this.zoomNumber = parseFloat($("#gridLeader").css("zoom")) + 0.1
-                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
+                this.zoomNumber = parseFloat($(".gridLeader").css("zoom")) + 0.1
+                $(".gridLeader").css("zoom", `${this.zoomNumber}`);
             },
 
             zoomOut() {
-                this.zoomNumber = parseFloat($("#gridLeader").css("zoom")) - 0.1
-                $("#gridLeader").css("zoom", `${this.zoomNumber}`);
+                this.zoomNumber = parseFloat($(".gridLeader").css("zoom")) - 0.1
+                $(".gridLeader").css("zoom", `${this.zoomNumber}`);
             },
 
             setWidth(e){
-                $("#gridLeader").css("width", this.canvasWid);
+                $(".gridLeader").css("width", this.canvasWid);
             },
 
             setHeight(){
-                $("#gridLeader").css("height", this.canvasHei);
+                $(".gridLeader").css("height", this.canvasHei);
             },
 
             transparent(){
-                $("#gridLeader").css("background-color", "transparent");
+                $(".gridLeader").css("background-color", "transparent");
             },
 
             changeMode(event){
@@ -267,7 +267,7 @@ $(document).ready(function(){
 
     for(i = 1; i <= 24; i++){
         for(j = 1; j <= 24; j++) {
-            $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+            $(".gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
         }
     }
 
@@ -326,7 +326,7 @@ $(document).ready(function(){
 
     $("#color1").on("change", function (){
         background = $("#color1").val();
-        $("#gridLeader").css("background-color",background);
+        $(".gridLeader").css("background-color",background);
     })
 
     $("#color2").on("change", function (){
@@ -343,11 +343,11 @@ $(document).ready(function(){
 
         if(confirm("Change width of grid?")){
             rows = $("#width-val").val();
-            $("#gridLeader").html("");
+            $(".gridLeader").html("");
 
             for(i = 1; i <= rows; i++){
                 for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                    $(".gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
                 }
             }
         }
@@ -362,11 +362,11 @@ $(document).ready(function(){
     $("#height-val").on("change", function (){
         if(confirm("Change height of grid?")) {
             columns = $("#height-val").val();
-            $("#gridLeader").html("");
+            $(".gridLeader").html("");
 
             for(i = 1; i <= rows; i++){
                 for(j = 1; j <= columns; j++) {
-                    $("#gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
+                    $(".gridLeader").append(`<div draggable="false" class="gridKid" style='border: .01px solid black; grid-column: ${i}; grid-row: ${j};'></div>`)
                 }
             }
         }
@@ -404,22 +404,23 @@ $(document).ready(function(){
     $("#main-col").on("mousewheel", function (e){
         if(e.originalEvent.wheelDelta /120 > 0) {
             e.preventDefault();
-            zoom = $("#gridLeader").css("zoom");
+            zoom = $(".gridLeader").css("zoom");
             if(e.ctrlKey){
                 zoom = parseFloat(zoom) + .1;
-                $("#gridLeader").css("zoom", `${zoom}`);
+                $(".gridLeader").css("zoom", `${zoom}`);
             }
         }
         else{
             e.preventDefault();
-            zoom = $("#gridLeader").css("zoom");
+            zoom = $(".gridLeader").css("zoom");
             if(e.ctrlKey){
                 zoom = parseFloat(zoom) - .1;
-                $("#gridLeader").css("zoom", `${zoom}`);
+                $(".gridLeader").css("zoom", `${zoom}`);
             }
         }
 
     })
+
 
 
 
